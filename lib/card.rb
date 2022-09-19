@@ -1,4 +1,5 @@
 
+# class object to handle "Card"
 # String color: color of the card : red, green, purple
 # Int num: number of the shape: 1,2,3
 # String shape: shape of the card: diamond, oval, squiggles

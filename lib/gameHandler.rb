@@ -1,4 +1,11 @@
-#check whether lay out cards has the set
+# Main computation of game of set
+# String[] colorList: string array that contains all the elements of colors of cards
+# int[] numList: integer array that contains all the element of numbers of cards
+# string[] shapeList: string array that contains all the elements of shape of cards
+# string[] shadingList: string array that contains all the elements of shading of cards
+# list[card] deck: array of set of card objects
+# list[card] boardDeck: array of 12 cards object that is drawn from deck
+# integer idx: integer that store the index of deck is drawn
 
 class GameHandler
   attr_reader :colorList, :numList, :shadingList, :shadingList, :deck, :boardDeck
@@ -17,6 +24,7 @@ class GameHandler
 
   end
 
+  # draw card from the @deck
   def drawCard
     firstDraw = 12
     normalDraw = 3
@@ -34,6 +42,8 @@ class GameHandler
     end
   end
 
+  # generate the deck using colorList, numList, shapeList, shadingList
+  # Then, shuffle for randomness
   def generateDeck
 
     @colorList.each do |color|
@@ -57,6 +67,8 @@ class GameHandler
   end
 =end
 
+  # check the availability of set of the three cards that user choose
+  # return true if three card is set false when not
   def checkAvailability(setOfCards)
 
     return (checkColorAvailability setOfCards) &&
@@ -65,6 +77,8 @@ class GameHandler
       (checkShapeAvailability setOfCards)
   end
 
+  # check the color availability of set of the three cards that user choose
+  # return true if three card is set false when not
   def checkColorAvailability(setOfCards)
     set = false
     if (setOfCards[0].color == setOfCards[1].color &&
@@ -82,6 +96,8 @@ class GameHandler
     return set
   end
 
+  # check the num availability of set of the three cards that user choose
+  # return true if three card is set false when not
   def checkNumAvailability(setOfCards)
     set = false
     if (setOfCards[0].num == setOfCards[1].num &&
@@ -99,6 +115,8 @@ class GameHandler
     return set
   end
 
+  # check the shape availability of set of the three cards that user choose
+  # return true if three card is set false when not
   def checkShapeAvailability(setOfCards)
     set = false
     if (setOfCards[0].shape == setOfCards[1].shape &&
@@ -116,6 +134,8 @@ class GameHandler
     return set
   end
 
+  # check the shading availability of set of the three cards that user choose
+  # return true if three card is set false when not
   def checkShadingAvailability(setOfCards)
     set = false
     if (setOfCards[0].shading == setOfCards[1].shading &&
@@ -133,6 +153,9 @@ class GameHandler
     return set
   end
 
+  # Receiving the playerArray from game and find the highest score player
+  # if the highest scored player is more than one, than print all the highest scored player
+  # List[player] playerArray : array of set of all players who joined the game
   def findWinner(playerArray)
     maxScore = playerArray[0].score
     maxPlayer = ""
@@ -148,6 +171,7 @@ class GameHandler
     puts "Winner is #{maxPlayer} !!"
   end
 
+  #print the cards object of the @boardDeck
   def printBoardDeck
     boardDeckIdx = 0
     @boardDeck.each do |item|
@@ -157,10 +181,5 @@ class GameHandler
     end
   end
 
-  def printPlayer playerArray
-    playerArray.each do |player|
-      puts "#{player.name} : #{player.score} points"
-    end
 
-  end
 end

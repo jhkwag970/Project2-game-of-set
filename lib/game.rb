@@ -11,6 +11,9 @@ class Game
     @setOfIndex = Array.new()
   end
 
+  # add the player into the @playerArray by receiving the input from console
+  # return true if console receive valid input and false if not
+  # valid inputs are natural numbers greater than 1
   def addPlayer
     print "select number of players: "
     numberOfPlayer = gets.to_i
@@ -31,6 +34,16 @@ class Game
     return true
   end
 
+  # print the name and score of the players in @playerArray
+  def printPlayer
+    @playerArray.each do |player|
+      puts "#{player.name} : #{player.score} points"
+    end
+
+  end
+
+  # find the index of the input name from the @playerArray
+  # return index of input name
   def findName
     while true
       puts "Enter the name"
@@ -48,6 +61,9 @@ class Game
     return playerNum
   end
 
+  # Enter the three index numbers from boardDeck
+  # fails if index number is not 0 ~ 11
+  # List[card] boardDeck: array of 12 cards
   def enterIndex (boardDeck)
     puts "Enter three index numbers separated by Enter Key"
     size = 3
@@ -66,13 +82,15 @@ class Game
 
   end
 
+
+  # starting the one repetition of game
   def startGame
     gameHandler = GameHandler.new
     defBoardDeckNum = 12
 
     puts "To make a Set, enter the name and enter the three index number"
     while(gameHandler.deck.length > 0 || gameHandler.boardDeck.length < defBoardDeckNum)
-      gameHandler.printPlayer @playerArray
+      printPlayer
       puts "------------------------------"
       gameHandler.printBoardDeck
 

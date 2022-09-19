@@ -1,7 +1,8 @@
-# String player_name: name of the player
-# Array[card] player_card: set of cards that player earned through the game
+
+# class object to handle "Player"
+# String name: name of the player
 # Int score: size of array, representing the score that player earned
-#
+
 class Player
   attr_accessor :name, :score
 
