@@ -1,10 +1,9 @@
 require_relative 'lib/game'
 
-game = Game.new
-
 gameStatus = true
 
 while gameStatus
+  game = Game.new
 
   if !game.addPlayer
     break
