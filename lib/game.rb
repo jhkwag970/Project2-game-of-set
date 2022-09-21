@@ -70,8 +70,9 @@ class Game
     enter = 0
     while(enter < size)
       num = gets.to_i
+
       case num
-      when 0 .. 11
+      when 0 .. (boardDeck.length - 1)
         @setOfIndex.push num
         @setOfCards.push boardDeck[num]
         enter += 1
@@ -81,7 +82,6 @@ class Game
     end
 
   end
-
 
   # starting the one repetition of game
   def startGame
@@ -93,6 +93,13 @@ class Game
       printPlayer
       puts "------------------------------"
       gameHandler.printBoardDeck
+
+      puts "Enter 0 if none of 12 cards are making a set to draw three more cards else enter 1"
+      moreDeck = gets.to_i
+      if (moreDeck == 0)
+        gameHandler.drawCard
+        next
+      end
 
       playerNum = findName
 
@@ -109,7 +116,9 @@ class Game
           tmpIdx+=1
         end
 
-        gameHandler.drawCard
+        if(gameHandler.boardDeck.length < 12)
+          gameHandler.drawCard
+        end
       else
         puts "#{@playerArray[playerNum].name} is wrong"
         if @playerArray[playerNum].score > 0
